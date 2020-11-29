@@ -14,7 +14,7 @@ class UserSubscription extends AuthenticatedResourceAbstract
      */
     public function get($path = "/userSubscriptions", $params = [])
     {
-        return new ApiResponse($this->request("get", $path, $params), 'userSubscriptions', $path, $params);
+        return new ApiResponse($this->request("get", $path, $params, null, false), 'userSubscriptions', $path, $params);
     }
 
     /**
@@ -23,7 +23,7 @@ class UserSubscription extends AuthenticatedResourceAbstract
      */
     public function post($path = "/userSubscriptions", $params = [], $body = null)
     {
-        return new ApiResponse($this->request("post", $path, $params), 'userSubscriptions', $path, $params, $body);
+        return new ApiResponse($this->request("post", $path, $params, $body, false), 'userSubscriptions', $path, $params, $body);
     }
 
     /**
@@ -32,14 +32,14 @@ class UserSubscription extends AuthenticatedResourceAbstract
      */
     public function put($path = "/userSubscriptions", $params = [], $body = null)
     {
-        return new ApiResponse($this->request("put", $path, $params), 'userSubscriptions', $path, $params, $body);
+        return new ApiResponse($this->request("put", $path, $params, $body, false), 'userSubscriptions', $path, $params, $body);
     }
 
     public function subscribeUser($webhookKey){
-        return $this->post('/userSubscriptions', null, [
+        return $this->post('/userSubscriptions', null, [[
             'state' => "ACTIVE",
             'webhookKey' => $webhookKey
-        ]);
+        ]]);
     }
 
 }
