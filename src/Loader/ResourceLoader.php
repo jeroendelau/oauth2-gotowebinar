@@ -112,5 +112,25 @@ class ResourceLoader {
         $accessToken = $this->refreshToken($this->storage->fetchToken($organizerKey));
         return $accessToken ? (new \DalPraS\OAuth2\Client\Resources\CoOrganizer($this->provider, $accessToken)) : null;
     }
+
+    /**
+     * @param string $organizerKey
+     * @return \DalPraS\OAuth2\Client\Resources\Webhook|null
+     */
+    public function getWebhookResource(string $organizerKey)
+    {
+        $accessToken = $this->refreshToken($this->storage->fetchToken($organizerKey));
+        return $accessToken ? (new \DalPraS\OAuth2\Client\Resources\Webhook($this->provider, $accessToken)) : null;
+    }
+
+    /**
+     * @param string $organizerKey
+     * @return \DalPraS\OAuth2\Client\Resources\UserSubscription|null
+     */
+    public function getUserSubscriptionResource(string $organizerKey)
+    {
+        $accessToken = $this->refreshToken($this->storage->fetchToken($organizerKey));
+        return $accessToken ? (new \DalPraS\OAuth2\Client\Resources\UserSubscription($this->provider, $accessToken)) : null;
+    }
 }
 

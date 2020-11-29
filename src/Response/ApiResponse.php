@@ -29,17 +29,18 @@ class ApiResponse
             return $this->response['response'];
         }
 
-        if (!isset($this->response['page'])) {
-            return $this->response;
-        }
-
         // Paged response
         if (isset($this->response['_embedded'])) {
             return $this->response['_embedded'][$this->type];
         }
 
-        // Empty paged response
-        return [];
+        // empty paged response
+        if (isset($this->response['page'])) {
+            return [];
+        }
+
+        // Others
+        return $this->response;
     }
 
     public function getPaging(){
